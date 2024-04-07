@@ -22,4 +22,4 @@ Ce projet est un site web développé avec Symfony, Docker et SQLite, qui permet
 
 3. **Visualisation des Leçons :** Les étudiants et les professeurs peuvent visualiser les leçons.
 4. **Inscription au leçons :** Les étudiants peuvent s'inscrire et se désincrire aux leçons des professeures.
-5. **Déconnection :** Les étudiants et les professeurs peuvent se déconnecter sans perdre leurs données
+5. **Déconnection :** Les étudiants et les professeurs peuvent se déconnecter sans perdre leurs données.
