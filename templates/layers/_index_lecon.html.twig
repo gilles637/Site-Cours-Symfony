@@ -1,0 +1,11 @@
+<div class="card" >
+    <div class="card-body">
+        <h5 class="card-title">{{ lecon.nom }}</h5>
+        <p class="card-text">by {{ lecon.professeur.prenom }} {{ lecon.professeur.nom }}</p>
+        <p class="card-text">
+            {{ lecon.description | u.truncate(100,' ...',false) | markdown | raw }}
+        </p>
+        <button onclick="location.href='{{ path('app_lecon_show', {'id': lecon.id}) }}'"
+                title="Show" class="btn btn-primary">show</button>
+    </div>
+</div>

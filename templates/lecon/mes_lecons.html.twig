@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes Leçons{% endblock %}
+
+{% block body %}
+    <br/>
+    <div style="text-align: center;"><h1>Mes Leçons</h1></div>
+    <br/>
+    {% for lecon in lecons %}
+        {{ include('layers/_index_lecon.html.twig') }}
+        <br/>
+    {% endfor %}
+    <div class="container">
+        <div class="row">
+            <div class="d-flex align-items-center justify-content-center">
+                {{ knp_pagination_render(lecons) }}
+            </div>
+        </div>
+    </div>
+    <br/>
+{% endblock %}

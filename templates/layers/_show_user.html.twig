@@ -1,0 +1,42 @@
+<div class="card">
+    <div class="card-body">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ user.id }}</td>
+                </tr>
+                <tr>
+                    <th>Nom</th>
+                    <td>{{ user.nom }}</td>
+                </tr>
+                <tr>
+                    <th>Prénom</th>
+                    <td>{{ user.prenom }}</td>
+                </tr>
+                <tr>
+                    <th>Login</th>
+                    <td>{{ user.username }}</td>
+                </tr>
+                <tr>
+                    <th>Rôles</th>
+                    <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<br/>&nbsp;&nbsp;
+{% if 'ROLE_PROFESSEUR' in user.roles %}
+    {% if 'ROLE_ADMIN' not in user.roles %}
+        <button onclick="location.href='{{ path('app_admin_give', {'id': user.id}) }}'"
+                title="GiveAdmin" class="btn btn-primary">Nommer Admin</button>
+    {% else %}
+        <button onclick="location.href='{{ path('app_admin_revoke', {'id': user.id}) }}'"
+                title="RevokeAdmin" class="btn btn-primary">Retirer Admin</button>
+    {% endif %}
+{% endif %}
+&nbsp;&nbsp;
+<button onclick="location.href='{{ path('app_admin_edit', {'id': user.id}) }}'"
+        title="EditUser" class="btn btn-primary">edit</button>
+{{ include('layers/_delete_form_user.html.twig') }}

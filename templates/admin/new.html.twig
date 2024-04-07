@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer Professeur{% endblock %}
+
+{% block body %}
+    <br/>
+    <div style="text-align: center;"><h1>Créer un Professeur</h1></div>
+    <br/>
+    <div class="row">
+        <div class="col-6 mx-auto" >
+            {{ include('layers/_form.html.twig') }}
+        </div>
+    </div>
+{% endblock %}

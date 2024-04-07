@@ -1,0 +1,59 @@
+<div class="card" >
+    <div class="card-body">
+        <h5 class="card-title">{{ lecon.nom }}</h5>
+        <p class="card-text">by {{ lecon.professeur.prenom }} {{ lecon.professeur.nom }}</p>
+        <p class="card-text">
+            {{ lecon.description | markdown | raw }}
+        </p>
+        <p class="card-text"><u>Création :</u> {{ lecon.createdAt | date('d/m/Y - H:i:s') }}
+            | <u>Dernière Modification :</u> {{ lecon.updatedAt | date('d/m/Y - H:i:s') }}</p>
+        <div class="card-footer bg-transparent border-success">
+            {% if is_granted('ROLE_ELEVE') %}
+                {% if app.user.mesLecons.contains(lecon) %}
+                    <button onclick="location.href='{{ path('app_lecon_remove', {'id': lecon.id}) }}'"
+                            title="RemoveLecon" class="btn btn-primary">Se Désinscrire</button>
+                {% else %}
+                    <button onclick="location.href='{{ path('app_lecon_add', {'id': lecon.id}) }}'"
+                            title="AddLecon" class="btn btn-primary">S'inscrire</button>
+                {% endif %}
+            {% endif %}
+            &nbsp;&nbsp;
+            {% if app.user == lecon.professeur %}
+                <button onclick="location.href='{{ path('app_lecon_edit', {'id': lecon.id}) }}'"
+                        title="Edit" class="btn btn-primary">edit</button>
+                {{ include('layers/_delete_form.html.twig') }}
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% if is_granted('ROLE_PROFESSEUR') %}
+    <br/>
+    <h4>Élèves Inscrits</h4>
+    <br/>
+    <div class="card">
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for eleve in lecon.eleves %}
+                        <tr>
+                            <td>{{ eleve.id }}</td>
+                            <td>{{ eleve.nom }}</td>
+                            <td>{{ eleve.prenom }}</td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="3">Aucun élève inscrit...</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endif %}

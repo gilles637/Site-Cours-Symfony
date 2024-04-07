@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier Utilisateur{% endblock %}
+
+{% block body %}
+    <br/>
+    <div style="text-align: center;"><h1>Modifier l'Utilisateur</h1></div>
+    <br/>
+    <div class="row">
+        <div class="col-6 mx-auto" >
+            {{ include('layers/_form.html.twig', {'button_label': 'Update'}) }}
+        </div>
+    </div>
+{% endblock %}
